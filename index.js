@@ -1,39 +1,76 @@
 const express = require('express');
+const cors = require('cors');
+
 const port = 3000;
+
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const paletas = [
   {
     id: 1,
-    sabor: 'Açai com Leite Condensado',
-    descricao: 'Açai com Leite Condensado',
-    foto: 'https://storage.googleapis.com/domain-images/60b1f285-d77c-444a-b734-1bc1efd2c472/products/gallery_bd17d9a3-cd93-44a9-9b44-f017a1c7a329.jpg',
-    preco: 10.0,
+    sabor: 'Camisa Barcelona',
+    descricao:
+      `Indicado para: Jogo |
+      Clube: Internacional |
+      Time: Barcelona |
+      Gola: Gola Careca |
+      Material: Poliéster |
+      Tipo: Torcedor`,
+    foto: './assets/images/barcelona.png',
+    preco: 'R$ 189,99',
   },
   {
     id: 2,
-    sabor: 'Banana com Leite Condensado',
-    descricao: 'Banana com Leite Condensado',
-    foto: 'https://storage.googleapis.com/domain-images/60b1f285-d77c-444a-b734-1bc1efd2c472/products/gallery_bd17d9a3-cd93-44a9-9b44-f017a1c7a329.jpg',
-    preco: 7.0,
+    sabor: 'Camisa Real Madrid',
+    descricao:
+    `Indicado para: Jogo |
+    Clube: Internacional |
+    Time: Real Madrid |
+    Gola: Gola em V |
+    Material: Poliéster |
+    Tipo: Torcedor`,
+    foto: './assets/images/realmadrid.png',
+    preco: 'R$ 289,99',
   },
   {
     id: 3,
-    sabor: 'Morango com Leite Condensado',
-    descricao: 'Morango com Leite Condensado',
-    foto: 'https://storage.googleapis.com/domain-images/60b1f285-d77c-444a-b734-1bc1efd2c472/products/gallery_bd17d9a3-cd93-44a9-9b44-f017a1c7a329.jpg',
-    preco: 8.0,
+    sabor: 'Camisa Arsenal',
+    descricao:
+    `Indicado para: Jogo |
+    Clube: Internacional |
+    Time: Arsenal |
+    Gola: Gola Careca |
+    Material: Poliéster |
+    Tipo: Torcedor`,
+    foto: './assets/images/arsenal.png',
+    preco: 'R$ 199,99',
+  },
+  {
+    id: 4,
+    sabor: 'Camisa Bayern',
+    descricao:
+    `Indicado para: Jogo |
+    Clube: Internacional |
+    Time: Bayern de Munique|
+    Gola: Gola em V |
+    Material: Poliéster |
+    Tipo: Torcedor`,
+    foto: './assets/images/bayern.png',
+    preco: 'R$ 269,99',
   },
 ];
 
-app.get('/', function (req, res) {
-  res.send('Hello Blue Módulo 3 Fullstack');
+app.get('/paletas/todas-paletas', (req, res) => {
+  res.send(paletas);
 });
 
-app.get('/paletas/find-paletas', (req,res) => {
-    res.send(paletas);
+app.get('/paletas/paleta/:id', (req, res) => {
+  const parametroId = Number(req.params.id);
+  const escolhaPaleta = paletas.find((paleta) => paleta.id === parametroId);
+  res.send(escolhaPaleta);
 });
 
 app.listen(port, () => {
