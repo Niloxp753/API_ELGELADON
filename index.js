@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const paletas = [
+const camisas = [
   {
     id: 1,
     sabor: 'Camisa Barcelona',
@@ -16,9 +16,7 @@ const paletas = [
       `Indicado para: Jogo |
       Clube: Internacional |
       Time: Barcelona |
-      Gola: Gola Careca |
-      Material: Poliéster |
-      Tipo: Torcedor`,
+      Material: Poliéster`,
     foto: './assets/images/barcelona.png',
     preco: 'R$ 189,99',
   },
@@ -29,9 +27,7 @@ const paletas = [
     `Indicado para: Jogo |
     Clube: Internacional |
     Time: Real Madrid |
-    Gola: Gola em V |
-    Material: Poliéster |
-    Tipo: Torcedor`,
+    Material: Poliéster`,
     foto: './assets/images/realmadrid.png',
     preco: 'R$ 289,99',
   },
@@ -42,9 +38,7 @@ const paletas = [
     `Indicado para: Jogo |
     Clube: Internacional |
     Time: Arsenal |
-    Gola: Gola Careca |
-    Material: Poliéster |
-    Tipo: Torcedor`,
+    Material: Poliéster`,
     foto: './assets/images/arsenal.png',
     preco: 'R$ 199,99',
   },
@@ -55,22 +49,20 @@ const paletas = [
     `Indicado para: Jogo |
     Clube: Internacional |
     Time: Bayern de Munique|
-    Gola: Gola em V |
-    Material: Poliéster |
-    Tipo: Torcedor`,
+    Material: Poliéster`,
     foto: './assets/images/bayern.png',
     preco: 'R$ 269,99',
   },
 ];
 
-app.get('/paletas/todas-paletas', (req, res) => {
-  res.send(paletas);
+app.get('/camisas/todas-camisas', (req, res) => {
+  res.send(camisas);
 });
 
-app.get('/paletas/paleta/:id', (req, res) => {
+app.get('/camisas/camisa/:id', (req, res) => {
   const parametroId = Number(req.params.id);
-  const escolhaPaleta = paletas.find((paleta) => paleta.id === parametroId);
-  res.send(escolhaPaleta);
+  const escolhaCamisa = camisas.find((camisa) => camisa.id === parametroId);
+  res.send(escolhaCamisa);
 });
 
 app.listen(port, () => {
