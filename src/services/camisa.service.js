@@ -1,7 +1,7 @@
 const camisas = [
   {
     id: 1,
-    sabor: 'Camisa Barcelona',
+    modelo: 'Camisa Barcelona',
     descricao: `Indicado para: Jogo |
         Clube: Internacional |
         Time: Barcelona |
@@ -11,7 +11,7 @@ const camisas = [
   },
   {
     id: 2,
-    sabor: 'Camisa Real Madrid',
+    modelo: 'Camisa Real Madrid',
     descricao: `Indicado para: Jogo |
       Clube: Internacional |
       Time: Real Madrid |
@@ -21,7 +21,7 @@ const camisas = [
   },
   {
     id: 3,
-    sabor: 'Camisa Arsenal',
+    modelo: 'Camisa Arsenal',
     descricao: `Indicado para: Jogo |
       Clube: Internacional |
       Time: Arsenal |
@@ -31,7 +31,7 @@ const camisas = [
   },
   {
     id: 4,
-    sabor: 'Camisa Bayern',
+    modelo: 'Camisa Bayern',
     descricao: `Indicado para: Jogo |
       Clube: Internacional |
       Time: Bayern de Munique|
