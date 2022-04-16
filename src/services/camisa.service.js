@@ -2,7 +2,7 @@ const camisas = [
   {
     id: 1,
     modelo: 'Camisa Barcelona',
-    descricao: `Indicado para: Jogo |
+    descricao: `
         Clube: Internacional |
         Time: Barcelona |
         Material: Poliéster`,
@@ -12,7 +12,7 @@ const camisas = [
   {
     id: 2,
     modelo: 'Camisa Real Madrid',
-    descricao: `Indicado para: Jogo |
+    descricao: `
       Clube: Internacional |
       Time: Real Madrid |
       Material: Poliéster`,
@@ -22,7 +22,7 @@ const camisas = [
   {
     id: 3,
     modelo: 'Camisa Arsenal',
-    descricao: `Indicado para: Jogo |
+    descricao: `
       Clube: Internacional |
       Time: Arsenal |
       Material: Poliéster`,
@@ -32,9 +32,9 @@ const camisas = [
   {
     id: 4,
     modelo: 'Camisa Bayern',
-    descricao: `Indicado para: Jogo |
+    descricao: `
       Clube: Internacional |
-      Time: Bayern de Munique|
+      Time: Bayern de Munique |
       Material: Poliéster`,
     foto: './assets/images/bayern.png',
     preco: 'R$ 269,99',
