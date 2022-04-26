@@ -1,88 +1,46 @@
 const camisasService = require('../services/camisa.service');
+const mongoose = require('mongoose');
 
-const findAllCamisasController = (req, res) => {
-  const camisas = camisasService.findAllCamisasService();
-
-  if (camisas.length == 0) {
+const findAllCamisasController = async (req, res) => {
+  const allCamisas = await camisasService.findAllCamisasService();
+  if (allCamisas.length == 0) {
     return res
       .status(404)
       .send({ message: 'Não existe nenhuma camisa cadastrada!' });
   }
-
-  res.send(camisas);
+  res.send(allCamisas);
 };
 
-const findByIdCamisaController = (req, res) => {
-  const parametroId = Number(req.params.id);
-
-  if (!parametroId) {
-    return res.status(400).send({ message: 'Id inválido!' });
-  }
-
-  const escolhaCamisa = camisasService.findByIdCamisaService(parametroId);
-
-  if (!escolhaCamisa) {
+const findByIdCamisaController = async (req, res) => {
+  const idParam = req.params.id;
+  const chosenCamisa = await camisasService.findByIdCamisaService(idParam);
+  if (!chosenCamisa) {
     return res.status(404).send({ message: 'Camisa não encontrada!' });
   }
 
-  res.send(escolhaCamisa);
+  res.send(chosenCamisa);
 };
 
-const createCamisaController = (req, res) => {
+const createCamisaController = async (req, res) => {
   const camisa = req.body;
-
-  if (
-    !camisa ||
-    !camisa.modelo ||
-    !camisa.descricao ||
-    !camisa.preco ||
-    !camisa.foto
-  ) {
-    return res
-      .status(400)
-      .send({ message: 'Envie todos os campos completos!' });
-  }
-
-  const newCamisa = camisasService.createCamisaService(camisa);
+  const newCamisa = await camisasService.createCamisaService(camisa);
   res.status(201).send(newCamisa);
 };
 
-const updateCamisaController = (req, res) => {
-  const parametroId = Number(req.params.id);
+const updateCamisaController = async (req, res) => {
+  const idParam = req.params.id;
+  const editCamisa = req.body;
 
-  if (!parametroId) {
-    return res.status(400).send({ message: 'Id inválido!' });
-  }
-
-  const camisaEdit = req.body;
-
-  if (
-    !camisaEdit ||
-    !camisaEdit.modelo ||
-    !camisaEdit.descricao ||
-    !camisaEdit.preco ||
-    !camisaEdit.foto
-  ) {
-    return res
-      .status(400)
-      .send({ message: 'Envie todos os campos completos!' });
-  }
-  const updatedCamisa = camisasService.updateCamisaService(
-    parametroId,
-    camisaEdit,
+  const updatedCamisa = await camisasService.updateCamisaService(
+    idParam,
+    editCamisa,
   );
   res.send(updatedCamisa);
 };
 
-const deleteCamisaController = (req, res) => {
-  const parametroId = Number(req.params.id);
-
-  if (!parametroId) {
-    return res.status(400).send({ message: 'Id inválido!' });
-  }
-
-  camisasService.deleteCamisaService(parametroId);
-
+const deleteCamisaController = async (req, res) => {
+  const idParam = req.params.id;
+  await camisasService.deleteCamisaService(idParam);
   res.send({ message: 'Camisa deletada com sucesso!' });
 };
 
@@ -93,3 +51,4 @@ module.exports = {
   updateCamisaController,
   deleteCamisaController,
 };
+
